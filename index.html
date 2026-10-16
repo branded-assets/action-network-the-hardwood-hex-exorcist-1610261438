@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The Hardwood Hex Exorcist — Action Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #101820;
+    --navy-2: #182530;
+    --green: #00b67a;
+    --bright: #00e09a;
+    --dark: #00865b;
+    --ink: #17232b;
+    --muted: #60717c;
+    --line: #d8e0e4;
+    --paper: #fff;
+    --wash: #f3f6f5;
+    --soft: #e9f8f3;
+    --red: #d85454;
+    --display: "Barlow Condensed", Impact, "Arial Narrow", sans-serif;
+    --serif: "Source Serif 4", Georgia, serif;
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0e1418;
+      --wash: #141b20;
+      --soft: #112621;
+      --ink: #e7edef;
+      --muted: #93a3aa;
+      --line: #273239;
+      --navy-2: #0b1116;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0e1418;
+    --wash: #141b20;
+    --soft: #112621;
+    --ink: #e7edef;
+    --muted: #93a3aa;
+    --line: #273239;
+    --navy-2: #0b1116;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.65;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--dark); }
+  a:hover { color: var(--green); }
+
+  h1, h2, h3, .display {
+    font-family: var(--display);
+    margin: 0;
+    color: var(--ink);
+    letter-spacing: .005em;
+  }
+
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- LOGO ---------- */
+  .logo { height: auto; display: block; }
+  .logo circle, .logo path { fill: none; stroke: var(--bright); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+  .logo text { font-family: var(--display); font-size: 21px; font-weight: 800; letter-spacing: 2px; fill: #fff; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    background: var(--navy);
+    color: #fff;
+    padding: 48px 0 52px;
+    overflow: hidden;
+  }
+  .mast { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; }
+  .kicker {
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.67);
+    font-size: 13px;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--bright);
+    border: 1px solid rgba(255,255,255,.16);
+    background: rgba(255,255,255,.05);
+    padding: 6px 14px 6px 10px;
+    border-radius: 999px;
+  }
+  .eyebrow svg { width: 14px; height: 14px; }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6.4vw, 4.2rem);
+    line-height: .98;
+    margin: 20px 0 16px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #fff;
+  }
+  .hero h1 em { font-style: normal; color: var(--bright); }
+
+  .dek {
+    font-size: 1.14rem;
+    line-height: 1.6;
+    max-width: 620px;
+    color: rgba(255,255,255,.84);
+    margin: 0;
+  }
+
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+  .btn {
+    display: inline-block;
+    font-family: var(--display);
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    font-size: 15px;
+    padding: 14px 26px;
+    border-radius: 3px;
+    text-decoration: none;
+    border: 1px solid transparent;
+  }
+  .btn-primary { background: linear-gradient(135deg, var(--green), var(--bright)); color: var(--navy); }
+  .btn-primary:hover { filter: brightness(1.04); color: var(--navy); }
+  .btn-ghost { background: transparent; border-color: rgba(255,255,255,.5); color: #fff; }
+  .btn-ghost:hover { background: rgba(255,255,255,.08); color: #fff; }
+
+  .research-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    margin-top: 34px;
+    border-top: 1px solid rgba(255,255,255,.16);
+    border-bottom: 1px solid rgba(255,255,255,.16);
+  }
+  .research-stat {
+    padding: 22px 16px;
+    border-right: 1px solid rgba(255,255,255,.16);
+    text-align: center;
+  }
+  .research-stat:last-child { border-right: 0; }
+  .research-stat b {
+    display: block;
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--bright);
+  }
+  .research-stat span {
+    display: block;
+    margin-top: 8px;
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 650;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.76);
+  }
+  .byline {
+    display: flex; flex-wrap: wrap; gap: 8px 14px;
+    margin: 20px 0 0;
+    font-family: var(--display); font-weight: 600;
+    color: rgba(255,255,255,.58); font-size: 14px;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section.block { padding: 50px 0; border-bottom: 1px solid var(--line); }
+  section.block.alt { background: var(--wash); }
+
+  .eyebrow-mark {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  h2.title {
+    font-size: clamp(1.7rem, 3.6vw, 2.3rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    max-width: 580px;
+  }
+  h2.title em { font-style: normal; color: var(--dark); }
+
+  .lede-col { max-width: 660px; }
+  .lede-col p { line-height: 1.72; font-size: 1.04rem; color: var(--ink); margin: 0 0 16px; }
+  .lede-col p.small-note { font-size: .92rem; color: var(--muted); font-style: italic; }
+
+  .steps { display: grid; gap: 16px; margin-top: 8px; }
+  .step {
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    gap: 18px;
+    align-items: start;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--green);
+    padding: 20px;
+  }
+  .step-num { font-family: var(--display); font-weight: 800; font-size: 1.9rem; color: var(--dark); line-height: 1; }
+  .step h3 { font-family: var(--serif); font-weight: 600; font-size: 1.06rem; text-transform: none; margin-bottom: 6px; }
+  .step p { margin: 0; color: var(--muted); line-height: 1.6; font-size: .98rem; }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 10px;
+  }
+  .detail-card { background: var(--paper); padding: 22px 20px; }
+  .detail-card .eyebrow-mark { margin-bottom: 8px; font-size: 11.5px; }
+  .detail-card .big { font-family: var(--display); font-weight: 800; font-size: 1.6rem; color: var(--ink); line-height: 1.15; }
+  .detail-card p.sub { margin: 8px 0 0; color: var(--muted); font-size: .9rem; line-height: 1.5; }
+
+  .judge-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 14px;
+  }
+  .judge-item { background: var(--navy); padding: 28px 18px; text-align: center; }
+  .judge-pct { font-family: var(--display); font-weight: 800; font-size: 2.5rem; color: var(--bright); line-height: 1; }
+  .judge-label { margin-top: 8px; font-size: .85rem; color: rgba(255,255,255,.76); line-height: 1.4; }
+
+  .rules-list { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+  .rules-list li { position: relative; padding-left: 26px; line-height: 1.6; color: var(--ink); font-size: .97rem; }
+  .rules-list li::before {
+    content: "";
+    position: absolute; left: 0; top: 6px;
+    width: 9px; height: 9px;
+    border: 2px solid var(--green);
+    transform: rotate(45deg);
+  }
+
+  .cta-band { text-align: center; padding: 58px 0; background: var(--navy); color: #fff; }
+  .cta-band h2 { font-size: clamp(1.7rem, 4.6vw, 2.5rem); text-transform: uppercase; margin-bottom: 14px; color: #fff; }
+  .cta-band p { color: rgba(255,255,255,.76); max-width: 540px; margin: 0 auto 26px; line-height: 1.6; }
+
+  footer { padding: 34px 0 46px; }
+  footer p { font-size: .78rem; line-height: 1.6; color: var(--muted); margin: 0 0 10px; }
+  footer .legal-mark {
+    font-family: var(--display); font-weight: 700; font-size: 12px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px;
+  }
+
+  @media (max-width: 640px) {
+    .judge-grid { grid-template-columns: 1fr; }
+    .step { grid-template-columns: 38px 1fr; }
+    .mast { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="mast">
+      <svg class="logo" width="190" viewBox="0 0 228 34" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Action Network"><circle cx="13" cy="17" r="11"></circle><path d="M8 17.3l3.4 3.4 6.8-7.4"></path><text x="30" y="22.4" textLength="192" lengthAdjust="spacingAndGlyphs">ACTION NETWORK</text></svg>
+    </div>
+    <span class="eyebrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6M12 2a4 4 0 0 1 4 4c0 2-2 3-2 5"/><path d="M8 22c0-5 2-7 4-7s4 2 4 7"/></svg>
+      Entries Open Oct 19 &ndash; Nov 7, 2026
+    </span>
+    <h1>The Hardwood<br><em>Hex Exorcist</em></h1>
+    <p class="dek">
+      Action Network is paying one fan $3,000 to break a basketball curse. Our 20-year study of Halloween-week box scores flagged the arenas most prone to blown leads and ice-cold shooting, and we're sending someone to lift it, on camera, with sage, lucky charms, and a game plan.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://www.actionnetwork.com" target="_blank" rel="noopener">Enter at ActionNetwork.com</a>
+      <a class="btn btn-ghost" href="#how-to-enter">How It Works</a>
+    </div>
+    <div class="research-strip" aria-label="The offer">
+      <div class="research-stat"><b>$3,000</b><span>Cash Prize</span></div>
+      <div class="research-stat"><b>1</b><span>Winning Curse Breaker</span></div>
+      <div class="research-stat"><b>21+</b><span>U.S. Residents</span></div>
+    </div>
+    <p class="byline"><strong>Action Network</strong><span>·</span><span>Entries close Nov 7, 2026</span></p>
+  </div>
+</header>
+
+<section class="block">
+  <div class="wrap">
+    <div class="eyebrow-mark">The Assignment</div>
+    <h2 class="title">Somebody has to <em>break the curse</em></h2>
+    <div class="lede-col">
+      <p>
+        Every basketball season, a handful of arenas earn a reputation: blown fourth-quarter leads, ice-cold shooting nights, free-throw chokes in crunch time, buzzer-beaters that land on the wrong side of the scoreboard. Action Network built a 20-year study of late-October and Halloween-week games to find out which buildings actually back that reputation up in the box score, not just in fan folklore.
+      </p>
+      <p>
+        Now we need someone to do something about it. One winning applicant becomes Action Network's official Hardwood Hex Exorcist for opening week: full ritual gear, sage at the gates, lucky charms in the stands, and an original piece of curse-breaking content to show for it. This isn't about haunting anybody &mdash; it's about lifting the hex. Applicants are encouraged, though not required, to target a building our research flags as cursed; judges are scoring creativity and execution either way.
+      </p>
+      <p class="small-note">
+        This is a skill-based promotional competition, not a sponsorship by or affiliation with any basketball league, team, or venue.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="block alt" id="how-to-enter">
+  <div class="wrap">
+    <div class="eyebrow-mark">How to Enter</div>
+    <h2 class="title">Three things, one submission</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <h3>Attend a game</h3>
+          <p>Get yourself to an eligible professional basketball game during the entry period, October 19&ndash;November 7, 2026.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <h3>Break the curse</h3>
+          <p>Create original photo or video content at or around the game built around the Hardwood Hex Exorcist concept &mdash; a fun, creative, theatrical curse-breaking moment. Costumes, sage, and lucky charms are all fair game, as long as everything clears venue rules and security.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <h3>Submit it</h3>
+          <p>Send your entry through the official Action Network submission channel before 11:59:59 PM ET on November 7, 2026. One entry per person.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="eyebrow-mark">The Fine Print, Made Readable</div>
+    <h2 class="title">Key details</h2>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="eyebrow-mark">Entry Period</div>
+        <div class="big">Oct 19 &ndash; Nov 7, 2026</div>
+        <p class="sub">Submissions outside this window are void.</p>
+      </div>
+      <div class="detail-card">
+        <div class="eyebrow-mark">Eligibility</div>
+        <div class="big">U.S. residents, 21+</div>
+        <p class="sub">Open to legal residents of the 50 states or Washington, D.C. Sponsor employees and their immediate families cannot enter.</p>
+      </div>
+      <div class="detail-card">
+        <div class="eyebrow-mark">The Prize</div>
+        <div class="big">$3,000 cash</div>
+        <p class="sub">Paid by bank transfer or another method the Sponsor designates. Winner covers any applicable taxes.</p>
+      </div>
+      <div class="detail-card">
+        <div class="eyebrow-mark">Notification</div>
+        <div class="big">15-day window</div>
+        <p class="sub">The winner is notified by email within 15 days of the entry period closing, then has 15 days to respond and claim the prize.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="wrap">
+    <div class="eyebrow-mark">Judging</div>
+    <h2 class="title">How the winner gets picked</h2>
+    <p class="lede-col" style="color:var(--muted); line-height:1.6; margin-bottom:0;">This is a skill-based competition judged by a panel selected by the Sponsor. There's no raffle, no random draw &mdash; the best curse-breaking wins.</p>
+    <div class="judge-grid">
+      <div class="judge-item">
+        <div class="judge-pct">40%</div>
+        <div class="judge-label">Creativity &amp; originality</div>
+      </div>
+      <div class="judge-item">
+        <div class="judge-pct">40%</div>
+        <div class="judge-label">Execution of the Hardwood Hex Exorcist concept</div>
+      </div>
+      <div class="judge-item">
+        <div class="judge-pct">20%</div>
+        <div class="judge-label">Entertainment value</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="eyebrow-mark">House Rules</div>
+    <h2 class="title">Keep it fun, keep it legal</h2>
+    <ul class="rules-list">
+      <li>Submissions must be your own original work &mdash; no AI-generated content, nothing previously published or entered in another competition, and nothing used commercially elsewhere.</li>
+      <li>Follow every venue rule, security instruction, and staff direction. No blocking walkways, no restricted areas, no approaching players or officials.</li>
+      <li>Keep activities theatrical, not disruptive &mdash; the goal is a fun moment for the crowd, not an interruption to the game.</li>
+      <li>Avoid intentionally featuring basketball league or team logos, player likenesses, jerseys, or arena branding. If any of that appears incidentally in your footage, the Sponsor may blur, crop, or edit it before anything is published.</li>
+      <li>By entering, you grant Action Network a license to use your submission (including your name, image, and likeness) for promotional purposes tied to the competition.</li>
+      <li>One entry per person. Attempts to submit multiple entries, use fake identities, or otherwise game the process can lead to disqualification.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="wrap">
+    <h2>Ready to break a curse?</h2>
+    <p>No purchase or payment of any kind is necessary to enter or win, and a purchase will not improve your odds. Applications close November 7, 2026 at 11:59:59 PM ET.</p>
+    <a class="btn btn-primary" href="https://www.actionnetwork.com" target="_blank" rel="noopener">Start Your Application</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="legal-mark">Official Rules Summary</div>
+    <p>NO PURCHASE OR PAYMENT OF ANY KIND IS NECESSARY TO ENTER OR WIN. A PURCHASE OR PAYMENT OF ANY KIND WILL NOT INCREASE YOUR CHANCES OF WINNING.</p>
+    <p>This promotion is sponsored by Action Network, a wholly owned subsidiary of Better Collective USA, Inc. ("Sponsor"). The competition is designed to advertise and promote the Sponsor's business activities and is not gambling. It is in no way sponsored, endorsed, or administered by, or associated with, the National Basketball Association, its teams, affiliates, or any applicable game venue, nor with Facebook, Instagram, X, or any other third-party platform. All NBA and team trademarks and copyrights belong to their respective owners; references to NBA games, teams, or venues here are for informational and promotional purposes only.</p>
+    <p>This summary is provided for convenience. The full <a href="https://docs.google.com/document/d/e/2PACX-1vSlxhHfVr96yYTXP4wOiuZDEt7Qp7dqAwINCH9Mv5pU_4Rl3m2byWmHnBYQaewuXKK6hXbBVRR6Ulcp/pub" target="_blank" rel="noopener">Terms and Conditions</a> govern the competition in all respects.</p>
+  </div>
+</footer>
+
+</body>
+</html>
