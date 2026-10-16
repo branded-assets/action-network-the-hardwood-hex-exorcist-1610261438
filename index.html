@@ -263,6 +263,29 @@
     transform: rotate(45deg);
   }
 
+  .inspo-grid { display: grid; gap: 16px; margin-top: 8px; }
+  .inspo-card { background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--dark); padding: 20px 22px; }
+  .inspo-tag {
+    display: inline-block;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--soft);
+    padding: 4px 10px;
+    margin-bottom: 10px;
+  }
+  .inspo-card h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .inspo-card p { margin: 0; color: var(--ink); line-height: 1.65; font-size: .98rem; }
+
   .cta-band { text-align: center; padding: 58px 0; background: var(--navy); color: #fff; }
   .cta-band h2 { font-size: clamp(1.7rem, 4.6vw, 2.5rem); text-transform: uppercase; margin-bottom: 14px; color: #fff; }
   .cta-band p { color: rgba(255,255,255,.76); max-width: 540px; margin: 0 auto 26px; line-height: 1.6; }
@@ -354,6 +377,32 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="eyebrow-mark">Need Inspiration?</div>
+    <h2 class="title">Three ways to take on a cursed arena</h2>
+    <p class="lede-col" style="color:var(--muted); line-height:1.65; margin-bottom:0;">The best entries will tie directly to the data. Here's what that could look like at three of the arenas our research flagged.</p>
+    <div class="inspo-grid">
+      <div class="inspo-card">
+        <span class="inspo-tag">Toyota Center &middot; Houston</span>
+        <h3>The Cold Rim Advisory</h3>
+        <p>Houston's field-goal percentage drops 4.5 points during this window, the steepest fall in the top 10. Play it as a deadpan weather report: a giant foam thermometer pointed at the rim, a hair dryer aimed at the hoop pregame to thaw the shooting, and a straight-faced &ldquo;Cold Rim Advisory&rdquo; delivered like breaking news.</p>
+      </div>
+      <div class="inspo-card">
+        <span class="inspo-tag">American Airlines Center &middot; Dallas</span>
+        <h3>The Fourth-Quarter S&eacute;ance</h3>
+        <p>Dallas blows a 10-plus point fourth-quarter lead more often than any other arena in the top 10, at a 14.3% rate. Circle up in the parking lot with fellow fans around a tombstone reading &ldquo;10-Point Lead, Rest In Peace,&rdquo; and chant to keep the lead alive into the final buzzer.</p>
+      </div>
+      <div class="inspo-card">
+        <span class="inspo-tag">Scotiabank Arena &middot; Toronto</span>
+        <h3>The Buzzer Ward</h3>
+        <p>Toronto loses on a buzzer-beater more often than any other arena in the top 10, at a 12.5% rate. Build an oversized &ldquo;:05&rdquo; clock, tape a protective ward over the face, perform a mock exorcism on a stopwatch before tip-off, and hand out &ldquo;anti-buzzer&rdquo; wristbands to the section.</p>
+      </div>
+    </div>
+    <p class="lede-col small-note" style="margin-top:16px;">These are starting points, not requirements. Judges are scoring creativity and execution, not how closely you match the brief.</p>
   </div>
 </section>
 
